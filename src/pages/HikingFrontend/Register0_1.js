@@ -63,9 +63,10 @@ const useStyles = makeStyles((theme) => ({
         padding: '8px 0 0',
     },
     PhoneNumberBackground:{
-        width: '240px',
+        width: 'auto',
+        //fullWidth:true,
         height: '40',
-        margin: '12px 16px 0',//first value need to fix
+        margin: '-12px 0 0px 40px',//first value need to fix
         padding: '8px 0 0',
     },
     submit: {

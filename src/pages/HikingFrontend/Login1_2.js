@@ -7,8 +7,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, withTheme } from '@material-ui/core/styles';
 import Page from 'material-ui-shell/lib/containers/Page'
-import Grid, { GridSpacing } from '@material-ui/core/Grid';
-import { positions } from '@material-ui/system';
+import ReCAPTCHA from "react-google-recaptcha";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -104,6 +103,9 @@ export default function SignIn() {
   const classes = useStyles();
   let history = useHistory();
   let back = useHistory();
+  function onChange(value) {
+    console.log("Captcha value:", value);
+  }
   function handleClick() {
     history.push("/PersonalPage");
   }
@@ -116,7 +118,7 @@ export default function SignIn() {
       <div className={classes.container}>
         <ArrowBackIcon className={classes.MaterialIconsBlackArrowback} onClick={backhandleClick} ></ArrowBackIcon>
         <Typography className={classes.Title} textAlign="left">
-          登入
+          忘記密碼
         </Typography>
         <form className={classes.form} noValidate>
         <Typography className={classes.Text}  textAlign="left">
@@ -131,29 +133,13 @@ export default function SignIn() {
             label="請輸入你的電子信箱"
             name="email"
           />
-        <Typography className={classes.ErrorInfo}  textAlign="left">
-          錯誤資訊
-        </Typography>  
-        <Typography className={classes.Text}  textAlign="left">
-          密碼
-        </Typography>  
-          <TextField
-            InputLabelProps={{
-              className: classes.ModifyTextFieldColor
-            }}
-            className={classes.InputBackground}
-            id="password"
-            label="請輸入你的密碼 "
-            name="password"
-          />
         <Typography className={classes.ErrorInfo} >
           錯誤資訊
         </Typography>  
-        <Grid container justify="flex-end">
-            <Link>
-              <Typography  className={classes.ForgotInfo} >忘記密碼?</Typography>
-            </Link>
-          </Grid>
+        <ReCAPTCHA
+            sitekey="6LdFiEYaAAAAAHcdu_AyzIktEbqdTz7pXmNBC__W"
+            onChange={onChange}
+         />
         <Button
             type="submit"
             fullWidth
